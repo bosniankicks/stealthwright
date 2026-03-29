@@ -19,6 +19,22 @@ test('parses standard proxy URL with auth', () => {
   });
 });
 
+test('parses authority-style proxy URL with auth and no scheme', () => {
+  const parsed = parseProxyUrl('proxy-user:proxy-pass@198.51.100.11:8080');
+
+  assert.deepEqual(parsed, {
+    protocol: 'http',
+    username: 'proxy-user',
+    password: 'proxy-pass',
+    host: '198.51.100.11',
+    port: 8080,
+    proxyServer: 'http://198.51.100.11:8080',
+    hasAuth: true,
+    authString: 'proxy-user:proxy-pass',
+    display: 'http://198.51.100.11:8080 (with auth)',
+  });
+});
+
 test('parses standard proxy URL without auth', () => {
   const parsed = parseProxyUrl('http://198.51.100.20:9000');
 
