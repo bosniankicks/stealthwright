@@ -30,6 +30,7 @@
     "node": ">=14.0.0"
   },
   "scripts": {
+    "test": "node --test test/*.test.js",
     "test:basic": "node examples/basic-test.js"
   },
   "bugs": {
